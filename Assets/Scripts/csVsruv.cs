@@ -9,7 +9,7 @@ public class csVsruv : MonoBehaviour
 {
 
     [SerializeField] csSchar _schar;
-    [SerializeField] bool _popadanie_v_schar;
+    [SerializeField] public bool _popadanie_v_schar;
     [SerializeField] GameObject component_vsruv;
 
 

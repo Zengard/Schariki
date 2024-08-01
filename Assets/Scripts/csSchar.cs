@@ -34,4 +34,9 @@ public class csSchar : MonoBehaviour
        
     }
 
+    public void Zamerzanie()
+    {
+        speed_default = speed_default/3;
+        speed_uskorenie= speed_uskorenie/2;
+    }
 }

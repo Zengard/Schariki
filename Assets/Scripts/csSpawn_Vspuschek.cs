@@ -8,6 +8,7 @@ public class csSpawn_Vspuschek : MonoBehaviour
     [SerializeField] int _tschislo;
     int i_spawn = 0;
 
+    [SerializeField] csGraniza_nischnjaja _graniza_niz;
     void Start()
     {
        // Spawn_vspuschki();
@@ -17,6 +18,7 @@ public class csSpawn_Vspuschek : MonoBehaviour
 
     public void Spawn_vspuschki()
     {
+        _graniza_niz.Set_artobstrel(true); //скажи удалять шарики, подлетевшие к нижней границе
         if (i_spawn <= _tschislo)
         {
 
@@ -34,6 +36,7 @@ public class csSpawn_Vspuschek : MonoBehaviour
         else
         {
             i_spawn=0;
+            _graniza_niz.Set_artobstrel(false); //перестать удалять подлетающие шарики после конца артобстрела
             gameObject.SetActive(false);
         }
     }
