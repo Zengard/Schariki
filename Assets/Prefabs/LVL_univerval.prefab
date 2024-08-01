@@ -256,7 +256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7432133567745831571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 567603145705584763}
+        m_TargetAssemblyTypeName: csGraniza_nischnjaja, Assembly-CSharp
+        m_MethodName: Zamerzanie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3740169329574019953
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +720,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 567603145705584763}
+        m_TargetAssemblyTypeName: csGraniza_nischnjaja, Assembly-CSharp
+        m_MethodName: artillerija_vzruv_scharov
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6606017621755401534
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vspuschka_prefab: {fileID: 1791879558110378832, guid: 50b65b83d355356419ea2b8588703336, type: 3}
   _tschislo: 40
+  _graniza_niz: {fileID: 567603145705584763}
 --- !u!1 &6920317028465941411
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1816310798655598916, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
       propertyPath: m_Name
-      value: Graniza (1)
+      value: Graniza_niz
       objectReference: {fileID: 0}
     - target: {fileID: 1816310798655598916, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
       propertyPath: m_Layer
@@ -977,8 +1002,79 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1816310798655598916, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 567603145705584763}
+    - targetCorrespondingSourceObject: {fileID: 1816310798655598916, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6834479717823133828}
   m_SourcePrefab: {fileID: 100100000, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
+--- !u!1 &2167455884555336952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1816310798655598916, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
+  m_PrefabInstance: {fileID: 513565014508080572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &567603145705584763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167455884555336952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f0ea0c3cfac0345aa04d12a02ef86c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn_vspuschek: 0
+  _scharu_artobstrel: []
+  _scharu_zamerzanie: []
+--- !u!61 &6834479717823133828
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167455884555336952}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!4 &6075252239282180807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6012073582251548539, guid: c4fb80d496343674983c5a6a327c5a34, type: 3}
@@ -992,6 +1088,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6236394521716743971}
     m_Modifications:
+    - target: {fileID: 3858658004482368012, guid: b33d5f7459e041f408ad5e9620707999, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858658004482368012, guid: b33d5f7459e041f408ad5e9620707999, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7249898510808962331, guid: b33d5f7459e041f408ad5e9620707999, type: 3}
       propertyPath: m_Name
       value: Canvas_GameOver
@@ -1178,6 +1282,14 @@ PrefabInstance:
     - target: {fileID: 1205866678686910981, guid: d7a8c515675a4b94c9b7d5fe298229b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3513909869580325719, guid: d7a8c515675a4b94c9b7d5fe298229b5, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3513909869580325719, guid: d7a8c515675a4b94c9b7d5fe298229b5, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3747841909252589839, guid: d7a8c515675a4b94c9b7d5fe298229b5, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -1629,6 +1741,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 6758293728580364009, guid: 894c9ab69e8421d4ab1f4617ccc2f8c8, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6758293728580364009, guid: 894c9ab69e8421d4ab1f4617ccc2f8c8, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1759,6 +1879,14 @@ PrefabInstance:
     - target: {fileID: 8143953147223927059, guid: 01cb7a587bf25cc4abc6eafa30ef3e14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714562858346400451, guid: 01cb7a587bf25cc4abc6eafa30ef3e14, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714562858346400451, guid: 01cb7a587bf25cc4abc6eafa30ef3e14, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2002311410575325430, guid: 01cb7a587bf25cc4abc6eafa30ef3e14, type: 3}
