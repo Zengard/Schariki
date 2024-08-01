@@ -14,18 +14,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] float _vremja;
     int coin;
+
+    //для активации щита
+    [SerializeField] GameObject schit;
+    bool schit_actyven = false;
+
     public void HP(int uron)
     {
-        _hp = _hp + uron;
-        if(_hp<=0)
+        if (schit_actyven==false)
         {
-            _Canvas_GameOver.SetActive(true);
+            _hp = _hp + uron;
+            if (_hp <= 0)
+            {
+                _Canvas_GameOver.SetActive(true);
+            }
+            //удали сердечко
+            _ui_hp.skrut_hp();
         }
-        //удали сердечко
-        _ui_hp.skrut_hp();
     }
 
-    public void Coin(int coin) 
+    public void Coin(int coin)
     {
         _coin += coin;
         _ui_coin.text = _coin.ToString(); //загружаем в виджет
@@ -40,5 +48,19 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(_vremja);
         _Canvas_Finish.SetActive(true);
+    }
+
+    public void activazija_schita()
+    {
+        schit_actyven = true;
+        schit.SetActive(true);
+        StartCoroutine(vremja_schita());
+    }
+
+    private IEnumerator vremja_schita()
+    {
+        yield return new WaitForSeconds(5f);
+        schit_actyven = false;
+        schit.SetActive(false);
     }
 }

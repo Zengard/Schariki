@@ -15,6 +15,11 @@ public class csMove : MonoBehaviour
     // [SerializeField] GameObject _canvas_game_over;
     [SerializeField] GameManager _gameManager;
     [SerializeField] csVspuschka _vspuschka;
+    [SerializeField] GameObject _vspuschka_prefab;
+
+
+
+
 
     int coef_coin=1;
     // Start is called before the first frame update
@@ -67,8 +72,9 @@ public class csMove : MonoBehaviour
         {
 
             //телепорт вспышки в нужное место
-            _vspuschka.teleport(transform.position);
-
+            //_vspuschka.teleport(transform.position);
+            GameObject vspuschka_spawn = Instantiate(_vspuschka_prefab);
+            vspuschka_spawn.transform.position = transform.position;
 
             //выстрел лучём, проходящим через множество обьектов
             RaycastHit2D[] hit = Physics2D.RaycastAll(gameObject.transform.position, Vector2.zero);
@@ -80,19 +86,21 @@ public class csMove : MonoBehaviour
                 //При попадании в центр мишени коэфф увеличивается
                 if (hit[i].collider.gameObject.GetComponent<csMischen_zentr>())
                 {
-                    coef_coin = coef_coin * 10;
+                    coef_coin = coef_coin * 2;
                 }
                 //При попадании в мишень увеличивай коэфф баллов
                else if (hit[i].collider.gameObject.GetComponent<csMischen>())
                 {
                     _mischen = hit[i].collider.gameObject.GetComponent<csMischen>();
-                        coef_coin = coef_coin * 2;
+                        coef_coin = coef_coin + 1;
                 }
                
                 if (hit[i].collider.gameObject.GetComponent<csBomba>())
                 {
                     _bomba = hit[i].collider.gameObject.GetComponent<csBomba>();
-                    _gameManager.HP(-1);
+                    
+                        _gameManager.HP(-1);
+                    
                 }
                 if (hit[i].collider.gameObject.GetComponent<csVsruv>())
                 {
@@ -112,4 +120,5 @@ public class csMove : MonoBehaviour
 
     }
 
+    
 }

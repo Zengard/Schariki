@@ -8,7 +8,7 @@ public class csVspuschka : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Test());
     }
 
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class csVspuschka : MonoBehaviour
     private IEnumerator Test()
     {
         yield return new WaitForSeconds(1f);
-        transform.position = new Vector3(0, -20);
+        //transform.position = new Vector3(0, -20);
+        Destroy(gameObject);
     }
 }
