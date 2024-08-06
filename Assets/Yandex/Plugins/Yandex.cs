@@ -8,26 +8,47 @@ using UnityEngine.UI;
 
 public class Yandex : MonoBehaviour
 {
+  
+    public static Yandex YandexInstance;
+    //Awake - эвент, который вызывается при запуске, но раньше, чем эвент Старт
+    private void Awake()
+    {
+        if (YandexInstance == null)
+        {
+            YandexInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField] TextMeshProUGUI _text_nik;
     [SerializeField] RawImage _image;
 
     [DllImport("__Internal")]
     private static extern void PlayerData();
     //Экстерн - внешний. Запрос функции из другого джаваскипт файла
+    
+    [DllImport("__Internal")]
+    private static extern void OzenkaJS(); //предложение поставить оценку
 
-    private void Start()
-    {
-      
-    }
+    [DllImport("__Internal")]
+    private static extern void SaveJS(string date);//для сохранения данных
+    [DllImport("__Internal")]
+    private static extern void LoadJS();//для загрузки данных
+
     public void TestHelloWorld()
     {
         PlayerData();
     }
 
     //подгрузка имени игрока в игру из яндекса
-
-
-    public void SetNik(string text)
+      public void SetNik(string text)
     {
         _text_nik.text = text;
     }
@@ -45,12 +66,32 @@ public class Yandex : MonoBehaviour
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.Log(request.error);
-            Debug.Log("ОШИБКА ЗАГРУЗКИ КАРТИНКИ 123");
+           
         }
         else
         {
             _image.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-            Debug.Log("Картинка загрузилась");
+           
         }
+    }
+
+
+    public void Ozenka()
+    {
+        OzenkaJS();
+    }
+
+    public void Save(string date)
+    {
+        SaveJS(date);
+    }
+    public void Load()
+    {
+        LoadJS();
+    }
+
+    public void LoadCoin(string value)
+    {
+        Progress.GameInstance.LoadCoin(value);
     }
 }

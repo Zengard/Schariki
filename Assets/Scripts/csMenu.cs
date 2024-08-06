@@ -5,12 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class csMenu : MonoBehaviour
 {
+    [SerializeField] GameManager _gameManager;
     [SerializeField] GameObject _self_UI;
+    [SerializeField] bool _save; //нужно ли сохранять игру при запуске этого виджета. Для гейм овера и финиша
     // Start is called before the first frame update
     void Start()
     {
         //пауза
         Time.timeScale = 0f;
+
+        //сохранение для финиша и гейм овера
+        if(_save)
+        {
+            _gameManager.Save();
+        }
     }
 
     // Update is called once per frame

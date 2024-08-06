@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _ui_coin;
 
     [SerializeField] float _vremja;
-    int coin;
+    
 
     //для активации щита
     [SerializeField] GameObject schit;
@@ -62,5 +62,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         schit_actyven = false;
         schit.SetActive(false);
+    }
+
+    public void Save()
+    {
+        Progress.GameInstance.SaveCoin(_coin);
     }
 }
