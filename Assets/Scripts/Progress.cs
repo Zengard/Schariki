@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 
 //[System.Serializable] - нужен, чтобы этот класс отображался справа в инспекторе, как публичная переменная
+//класс для сохранения переменных на сервере яндекса
 [System.Serializable]
 public class Date
 {
@@ -12,6 +13,10 @@ public class Date
     public int usilenie2_arta;
     public int usilenie3_zamarozka;
     public int usilenie4_schit;
+    public int aptetschka;
+    public int [] progress_lvl;
+    public bool progress_lvl2;
+    public bool progress_lvl3;
 }
 public class Progress : MonoBehaviour
 {
