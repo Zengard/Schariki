@@ -10,8 +10,7 @@ public class csGlavnoeMenu : MonoBehaviour
     [SerializeField] GameObject _zamok_text;
     [SerializeField] int nomer_lvl;
     [SerializeField] bool activnost_knopki;
-
-    private void skrut_menu()
+    public void skrut_menu()
     {
         _canvas_parent.SetActive(false);
 

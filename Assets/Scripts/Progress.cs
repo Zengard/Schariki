@@ -14,7 +14,7 @@ public class Date
     public int usilenie3_zamarozka;
     public int usilenie4_schit;
     public int aptetschka;
-    public int [] progress_lvl;
+    public int[] progress_lvl;
     public bool progress_lvl2;
     public bool progress_lvl3;
 }
@@ -24,7 +24,7 @@ public class Progress : MonoBehaviour
     [SerializeField] Yandex _csYandex;
     private bool _save_yandex;
     public Date date;
-    [SerializeField] TextMeshProUGUI _text_save_load;
+    [SerializeField] TextMeshProUGUI _text_monetu;
 
     //делаем так, чтобы обьект не уничтожался при смене уровней
     //используем его для сохранения прогресса
@@ -42,7 +42,7 @@ public class Progress : MonoBehaviour
         if (GameInstance == null)
         {
             GameInstance = this;
-            
+
         }
         else
         {
@@ -63,19 +63,34 @@ public class Progress : MonoBehaviour
         else
         {
             
-            date.Coin = PlayerPrefs.GetInt("Coin"); //загрузка денег с пк
+            //date.Coin = PlayerPrefs.GetInt("Coin"); //загрузка денег с пк
             date.usilenie1_minigun = PlayerPrefs.GetInt("usilenie1_minigun");
-            date.usilenie2_arta =  PlayerPrefs.GetInt("usilenie2_arta");
+            date.usilenie2_arta = PlayerPrefs.GetInt("usilenie2_arta");
             date.usilenie3_zamarozka = PlayerPrefs.GetInt("usilenie3_zamarozka");
             date.usilenie4_schit = PlayerPrefs.GetInt("usilenie4_schit");
-            _save_yandex = false;
+            date.aptetschka = PlayerPrefs.GetInt("aptetschka");
+          //  date.progress_lvl[0] = PlayerPrefs.GetInt("progress_lvl_0");
+          //  date.progress_lvl[1] = PlayerPrefs.GetInt("progress_lvl_1");
+          //  date.progress_lvl[2] = PlayerPrefs.GetInt("progress_lvl_2");
+          /*
+            if (PlayerPrefs.GetInt("progress_lvl2") == 0)
+            {
+                date.progress_lvl2 = false;
+            }
+            if (PlayerPrefs.GetInt("progress_lvl3") == 0)
+            {
+                date.progress_lvl3 = false;
+            }
+          */
             
+            _save_yandex = false;
+
         }
 
 
     }
 
-      public void SaveCoin(int zarabotok)
+    public void SaveCoin(int zarabotok)
     {
 
         date.Coin = zarabotok + date.Coin;
@@ -94,51 +109,86 @@ public class Progress : MonoBehaviour
             PlayerPrefs.SetInt("usilenie2_arta", date.usilenie2_arta);
             PlayerPrefs.SetInt("usilenie3_zamarozka", date.usilenie3_zamarozka);
             PlayerPrefs.SetInt("usilenie4_schit", date.usilenie4_schit);
- 
-}
+            PlayerPrefs.SetInt("aptetschka", date.aptetschka);
+            PlayerPrefs.SetInt("progress_lvl_0", date.progress_lvl[0]);
+            PlayerPrefs.SetInt("progress_lvl_1", date.progress_lvl[1]);
+            PlayerPrefs.SetInt("progress_lvl_2", date.progress_lvl[2]);
+
+            if (date.progress_lvl2 == false)
+            {
+                PlayerPrefs.SetInt("progress_lvl2", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("progress_lvl2", 1);
+            }
+            if (date.progress_lvl3 == false)
+            {
+                PlayerPrefs.SetInt("progress_lvl3", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("progress_lvl3", 1);
+
+            }
+        }
     }
 
-    //для загрузки на старте вызываем функцию в яндексе
-    //она вызывает функцию в js
-    //он вызывает функцию в яндекс c#
-    //и уже он потом вызывает этот метод
-    public void LoadCoin(string value)
-    {
-        
-        date = JsonUtility.FromJson<Date>(value);
-      /*  if (_text_save_load)
+        //для загрузки на старте вызываем функцию в яндексе
+        //она вызывает функцию в js
+        //он вызывает функцию в яндекс c#
+        //и уже он потом вызывает этот метод
+        public void LoadCoin(string value)
         {
-            _text_save_load.text = date.Coin + "\n" +
-        date.usilenie1_minigun + "\n" +
-        date.usilenie2_arta + "\n" +
-        date.usilenie3_zamarozka + "\n" +
-        date.usilenie4_schit;
-            //заполнение всех полей
-        }*/
+
+            date = JsonUtility.FromJson<Date>(value);
+            /*  if (_text_save_load)
+              {
+                  _text_save_load.text = date.Coin + "\n" +
+              date.usilenie1_minigun + "\n" +
+              date.usilenie2_arta + "\n" +
+              date.usilenie3_zamarozka + "\n" +
+              date.usilenie4_schit;
+                  //заполнение всех полей
+              }*/
 
 
+        }
+
+        //использование усиления
+        public void Usilenie(int nomer)
+        {
+            if (nomer == 1)
+            {
+                date.usilenie1_minigun--;
+            }
+            else if (nomer == 2)
+            {
+                date.usilenie2_arta--;
+            }
+            else if (nomer == 3)
+            {
+                date.usilenie3_zamarozka--;
+            }
+            else if (nomer == 4)
+            {
+                date.usilenie4_schit--;
+            }
+
+            SaveCoin(0);
+        }
+
+        //разблокировка уровня
+        public bool Razblokirovka_urovnja(int nomer_cartu, int nomer_missii, int zena_razblokirovki)
+        {
+            //если денег хватает, то разблокируй уровень
+            if ((date.Coin - zena_razblokirovki) >= 0)
+            {
+                date.Coin = date.Coin - zena_razblokirovki;
+                date.progress_lvl[nomer_cartu - 1]++;
+                SaveCoin(0);
+                return true;
+            }
+            return false;
+        }
     }
-
-    //использование усиления
-    public void Usilenie(int nomer)
-    {
-        if(nomer == 1)
-        {
-            date.usilenie1_minigun--;
-        }
-        else if(nomer == 2)
-        {
-            date.usilenie2_arta--;
-        }
-        else if (nomer == 3)
-        {
-            date.usilenie3_zamarozka--;
-        }
-        else if (nomer == 4)
-        {
-            date.usilenie4_schit--;
-        }
-
-        SaveCoin(0);
-    }
-}

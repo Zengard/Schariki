@@ -120,5 +120,10 @@ public class csMove : MonoBehaviour
 
     }
 
+
+    public void Set_Napravlenie_stik(Vector2 a)
+    {
+        napravlenie = a;
+    }
     
 }

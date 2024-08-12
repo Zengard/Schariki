@@ -10,6 +10,11 @@ public class csVuvodMonet : MonoBehaviour
 
     private void Start()
     {
+        obnovlenie_monet();
+    }
+
+    public void obnovlenie_monet()
+    {
         _text_coin.text = Progress.GameInstance.date.Coin.ToString();
     }
 }
