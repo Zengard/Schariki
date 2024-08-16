@@ -1667,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 6179050261013627680}
     - target: {fileID: 8874790470379118358, guid: 0beb658b9485d8c41b58efea6318db9a, type: 3}
       propertyPath: _vremja
-      value: 10
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8874790470379118358, guid: 0beb658b9485d8c41b58efea6318db9a, type: 3}
       propertyPath: _ui_coin
